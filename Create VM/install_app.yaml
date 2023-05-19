@@ -3,13 +3,13 @@
   become: true
   gather_facts: yes
   tasks:
-    - name: Install Nginx, MySQL and PHP
+    - name: Install Nginx, MariaDB and PHP
       apt:
         name: "{{ item }}"
         state: present
       loop:
         - nginx
-        - mysql-server
+        - mariadb-server
         - php-fpm
 
     - name: Configure Nginx
@@ -21,7 +21,7 @@
     - name: Configure PHP
       template:
         src: php.ini.j2
-        dest: /etc/php/7.0/fpm/php.ini
+        dest: /etc/php.ini
       notify: Restart PHP-FPM
 
   handlers:
@@ -32,5 +32,5 @@
 
     - name: Restart PHP-FPM
       service:
-        name: php7.0-fpm
+        name: php-fpm
         state: restarted
