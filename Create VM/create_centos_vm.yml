@@ -25,4 +25,13 @@
         var: instance
     - name: Set fact for instance IP
       set_fact:
-        instance_ip: "{{ instance.openstack.public_v4 }}"
+        instance_ip: "{{ instance.server.addresses[openstack_network][0].addr }}"
+    - name: Wait for SSH to be available
+      wait_for:
+        host: "{{ instance.server.addresses[openstack_network][0].addr }}"
+        port: 22
+        delay: 5
+        timeout: 600
+    - name: Print instance IP
+      debug:
+        var: instance_ip
