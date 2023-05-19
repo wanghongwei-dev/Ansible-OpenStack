@@ -24,10 +24,42 @@
         dest: /etc/php.ini
       notify: Restart PHP-FPM
 
+    - name: Start Nginx
+      service:
+        name: nginx
+        state: started
+      tags:
+        - nginx
+
+    - name: Reload Nginx
+      service:
+        name: nginx
+        state: reloaded
+      tags:
+        - nginx
+
+    - name: Start MariaDB
+      service:
+        name: mariadb
+        state: started
+      tags:
+        - mariadb
+
+    - name: Start PHP-FPM
+      service:
+        name: php-fpm
+        state: started
+      tags:
+        - php-fpm
   handlers:
     - name: Restart Nginx
       service:
         name: nginx
+        state: restarted
+
+    - name: Restart MariaDB
+      service:
+        name: mariadb
         state: restarted
 
     - name: Restart PHP-FPM
