@@ -45,6 +45,21 @@
         state: started
       tags:
         - php-fpm
+
+    - name: Open port 80
+      firewalld:
+        port: 80/tcp
+        permanent: true
+        state: enabled
+        immediate: true
+
+    - name: Open port 443
+      firewalld:
+        port: 443/tcp
+        permanent: true
+        state: enabled
+        immediate: true
+
   handlers:
     - name: Restart Nginx
       service:
