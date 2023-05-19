@@ -31,13 +31,6 @@
       tags:
         - nginx
 
-    - name: Reload Nginx
-      service:
-        name: nginx
-        state: reloaded
-      tags:
-        - nginx
-
     - name: Start MariaDB
       service:
         name: mariadb
