@@ -2,7 +2,7 @@
   hosts: localhost
   gather_facts: no
   vars:
-    instance_name: "{{ lookup('random_string', '/dev/urandom', '6', 'ascii_letters,digits') }}"
+    instance_name: "my-instance"
     flavor: "ecs.2C.4096MB.40GB"
     image: "Centos7.6_1810_x64"
     network: "provider"
