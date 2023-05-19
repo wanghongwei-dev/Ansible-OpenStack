@@ -23,15 +23,15 @@
     - name: Print instance details
       debug:
         var: instance
-    - name: Set fact for instance IP
-      set_fact:
-        instance_ip: "{{ instance.server.public_v4 }}"
     - name: Wait for SSH to be available
       wait_for:
         host: "{{ instance.server.public_v4 }}"
         port: 22
         delay: 5
         timeout: 600
+    - name: Set fact for instance IP
+      set_fact:
+        instance_ip: "{{ instance.server.public_v4 }}"
     - name: Print instance IP
       debug:
         var: instance_ip
