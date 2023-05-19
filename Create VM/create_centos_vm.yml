@@ -22,3 +22,6 @@
     - name: Print instance details
       debug:
         var: instance
+    - name: Set fact for instance IP
+      set_fact:
+        instance_ip: "{{ instance.openstack.public_v4 }}"
