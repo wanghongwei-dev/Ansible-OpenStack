@@ -20,14 +20,12 @@
         key_name: "{{ key_name }}"
         security_groups: "{{ security_groups }}"
         auth:
-          auth_url: "{{ credentials.openstack_auth_url }}"
-          username: "{{ credentials.openstack_username }}"
-          password: "{{ credentials.openstack_password }}"
-          project_name: "{{ credentials.openstack_project_name }}"
-          domain_name: "{{ credentials.openstack_domain_name }}"
-          region_name: "{{ credentials.openstack_region_name }}"
-          project_domain_name: "{{ credentials.openstack_project_domain_name }}"
-          user_domain_name: "{{ credentials.openstack_user_domain_name }}"
+          auth_url: "{{ credentials.os_auth.auth_url }}"
+          username: "{{ credentials.os_auth.username }}"
+          password: "{{ credentials.os_auth.password }}"
+          project_name: "{{ credentials.os_auth.project }}"
+          domain_name: "{{ credentials.os_auth.domain }}"
+          region_name: "{{ credentials.os_auth.region }}"
       register: instance
     - name: Print instance details
       debug:
