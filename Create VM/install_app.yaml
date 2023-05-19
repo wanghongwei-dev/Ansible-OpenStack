@@ -1,10 +1,10 @@
 - name: Install and configure Nginx, MySQL and PHP
-  hosts: localhost
+  hosts: all
   become: true
   gather_facts: yes
   tasks:
     - name: Install Nginx, MariaDB and PHP
-      apt:
+      yum:
         name: "{{ item }}"
         state: present
       loop:
