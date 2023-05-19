@@ -1,13 +1,13 @@
 - name: Create OpenStack instance
   hosts: localhost
   gather_facts: no
-  vars:
-    instance_name: "my-instance"
-    flavor: "ecs.2C.4096MB.40GB"
-    image: "Centos7.6_1810_x64"
-    network: "provider"
-    key_name: "wanghongwei public key"
-    security_groups: "default"
+  # vars:
+    # instance_name: "my-instance"
+    # flavor: "ecs.2C.4096MB.40GB"
+    # image: "Centos7.6_1810_x64"
+    # network: "provider"
+    # key_name: "wanghongwei public key"
+    # security_groups: "default"
   tasks:
     - name: Create instance
       os_server:
