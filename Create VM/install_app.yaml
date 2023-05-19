@@ -8,6 +8,7 @@
         name: "{{ item }}"
         state: present
       loop:
+        - epel-release
         - nginx
         - mariadb-server
         - php-fpm
