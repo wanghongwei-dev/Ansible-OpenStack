@@ -8,7 +8,6 @@
     network: "provider"
     key_name: "wanghongwei public key"
     security_groups: "default"
-    #credentials: "{{ lookup('awxcred', 'openstack-creds', default='') }}"
   tasks:
     - name: Create instance
       os_server:
@@ -19,13 +18,6 @@
         network: "{{ network }}"
         key_name: "{{ key_name }}"
         security_groups: "{{ security_groups }}"
-        auth:
-          auth_url: "{{ credentials.os_auth.auth_url }}"
-          username: "{{ credentials.os_auth.username }}"
-          password: "{{ credentials.os_auth.password }}"
-          project_name: "{{ credentials.os_auth.project }}"
-          domain_name: "{{ credentials.os_auth.domain }}"
-          region_name: "{{ credentials.os_auth.region }}"
       register: instance
     - name: Print instance details
       debug:
