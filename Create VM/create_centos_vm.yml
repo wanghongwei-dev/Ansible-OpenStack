@@ -8,7 +8,7 @@
     network: "provider"
     key_name: "wanghongwei public key"
     security_groups: "default"
-    credentials: "{{ lookup('awx', 'os_cd', 'default=None') }}"
+    credentials: "{{ lookup('awxcred', 'openstack-creds', default='') }}"
   tasks:
     - name: Create instance
       os_server:
