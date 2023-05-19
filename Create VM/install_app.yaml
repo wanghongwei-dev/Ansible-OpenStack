@@ -1,6 +1,8 @@
-- name: Install and configure Nginx, MySQL and PHP
+- name: Include variables from create_centos_vm
   include_vars:
     file: create_centos_vm.yml
+
+- name: Install and configure Nginx, MySQL and PHP
   hosts: "{{ instance_ip }}"
   become: true
   gather_facts: yes
