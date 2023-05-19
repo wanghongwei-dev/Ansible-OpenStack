@@ -12,6 +12,7 @@
     - name: Create instance
       os_server:
         state: present
+        wait: true
         name: "{{ instance_name }}"
         flavor: "{{ flavor }}"
         image: "{{ image }}"
