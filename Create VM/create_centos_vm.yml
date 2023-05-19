@@ -1,0 +1,34 @@
+- name: Create OpenStack instance
+  hosts: localhost
+  gather_facts: no
+  vars:
+    instance_name: "my-instance"
+    flavor: "ecs.2C.4096MB.40GB"
+    image: "Centos7.6_1810_x64"
+    network: "provider"
+    key_name: "wanghongwei public key"
+    security_groups: "default"
+    credentials: "{{ lookup('awx', '成都研发中心', 'default=None') }}"
+  tasks:
+    - name: Create instance
+      os_server:
+        state: present
+        name: "{{ instance_name }}"
+        flavor: "{{ flavor }}"
+        image: "{{ image }}"
+        network: "{{ network }}"
+        key_name: "{{ key_name }}"
+        security_groups: "{{ security_groups }}"
+        auth:
+          auth_url: "{{ credentials.openstack_auth_url }}"
+          username: "{{ credentials.openstack_username }}"
+          password: "{{ credentials.openstack_password }}"
+          project_name: "{{ credentials.openstack_project_name }}"
+          domain_name: "{{ credentials.openstack_domain_name }}"
+          region_name: "{{ credentials.openstack_region_name }}"
+          project_domain_name: "{{ credentials.openstack_project_domain_name }}"
+          user_domain_name: "{{ credentials.openstack_user_domain_name }}"
+      register: instance
+    - name: Print instance details
+      debug:
+        var: instance
